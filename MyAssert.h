@@ -41,6 +41,21 @@ public:
 #define ASSERT(expr)//不求值
 #endif
 
+
+// Simulate to the ThrowIfFailed(HRESULT).
+// Here we just use a boolean to togole the exception.
+// If you 
+#if CHECK_THROW_IF_ENABLED
+#define ThrowIfFalse(expr)\
+	if (expr){}\
+	else\
+	{\
+		throw SimpleException(#expr, __FILE__, __LINE__); \
+	}
+#else
+#define ThrowIfFalse(expr) expr
+#endif
+
 //这个宏适用于一些代码没有实现的时候，抛出这个异常，防止忘记一些代码的实现
 #define THROW_UNIMPLEMENT_EXCEPTION(pChar)\
 	{\
