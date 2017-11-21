@@ -10,3 +10,8 @@
 #include "Cleaner.h"
 
 #define Not(x) (!x)
+
+//删除类的复制构造函数和等于号重载函数。
+#define DELETE_COPY_CONSTRUCTOR(CLASS) \
+	CLASS(const CLASS&) = delete;\
+	CLASS& operator = (const CLASS&) = delete
