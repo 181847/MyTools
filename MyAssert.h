@@ -56,6 +56,13 @@ public:
 #define ThrowIfFalse(expr) expr
 #endif
 
+// print some message only in the debug mode.
+#ifdef _DEBUG
+#define DEBUG_MESSAGE(format, ...) fprintf(stderr, format, ##__VA_ARGS__)
+#else
+#define DEBUG_MESSAGE(...)
+#endif
+
 //这个宏适用于一些代码没有实现的时候，抛出这个异常，防止忘记一些代码的实现
 #define THROW_UNIMPLEMENT_EXCEPTION(pChar)\
 	{\
